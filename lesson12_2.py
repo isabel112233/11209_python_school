@@ -2,7 +2,7 @@ import random
 
 class Player:
     def __init__(self, name:str):
-        self.name = name
+        self.__name = name
         self.__dice1 = 0
         self.__dice2 = 0
         self.__dice3 = 0
@@ -12,22 +12,11 @@ class Player:
         self.__dice1 = random.randint(1, 6)
         self.__dice2 = random.randint(1, 6)
         self.__dice3 = random.randint(1, 6)
-        self.__dice4 = random.randint(1, 6)        
-        #dice = [self.__dice1, self.__dice2, self.__dice3, self.__dice4]
-        return dice   
-        
-    @property
-    #def name(self) -> str :
-        #return self.__name
-        
-
-    #@property
-    def value(self)->int:
-        global point
+        self.__dice4 = random.randint(1, 6)   
+             
         num = [self.__dice1, self.__dice2, self.__dice3, self.__dice4]
         lt = []
-        score =[]
-        i=0
+        score =[]        
         num = self.__play
         for i in num :    
             lt.append(num.count(i))        
@@ -46,7 +35,17 @@ class Player:
         else :
             pass
             point = num[1] + 12
-        return point        
+        return point   
+        
+    @property
+    def name(self) -> str :
+        return self.__name
+        
+
+    @property
+    def value(self)->int:
+        
+        return self.__play       
         
         #呼叫self.play()            
 
@@ -63,8 +62,7 @@ class Player:
 
 if __name__ == "__main__":
     print("===========擲骰子遊戲開始========")
-    p1 = Player("Robert")
-    p1 = Player.__play
+    p1 = Player("Robert")    
     p1.value()
     p2 = Player("John")
     p2.value()

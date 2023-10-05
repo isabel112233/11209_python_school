@@ -5,8 +5,9 @@
 - 數學計算
 
 ## 作業
-[2023_10-03作業-web](https://menu-wffn.onrender.com/)
-(https://menu-site.onrender.com)
+[2023_10-03作業-web]  (https://menu-wffn.onrender.com/)
+
+[2023-10_03作業-onsite] (https://menu-site.onrender.com)
 
 [2023_09_26_作業](https://github.com/isabel112233/11209_python_school/blob/main/2023_09_26%E4%BD%9C%E6%A5%AD.ipynb)
 

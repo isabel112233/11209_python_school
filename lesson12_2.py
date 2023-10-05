@@ -2,7 +2,7 @@ import random
 
 class Player:
     def __init__(self, name:str):
-        self.__name = name
+        self.name = name
         self.__dice1 = 0
         self.__dice2 = 0
         self.__dice3 = 0
@@ -12,16 +12,20 @@ class Player:
         self.__dice1 = random.randint(1, 6)
         self.__dice2 = random.randint(1, 6)
         self.__dice3 = random.randint(1, 6)
-        self.__dice4 = random.randint(1, 6)   
-             
-        num = [self.__dice1, self.__dice2, self.__dice3, self.__dice4]
+        self.__dice4 = random.randint(1, 6)             
+        
+    @property
+    def value(self)->int: 
+        self.__play
+        num = [self.__dice1, self.__dice2, self.__dice3, self.__dice4]   
+        print (num)     
         lt = []
-        score =[]        
-        num = self.__play
+        score =[]   
         for i in num :    
-            lt.append(num.count(i))        
+            lt.append(num.count(i)) 
+                   
         if sum(lt) ==4 or sum(lt) == 10 :
-            self.__play            
+            point =0           
         elif sum(lt) == 6 :
             j=0            
             for j in range(4):
@@ -33,22 +37,11 @@ class Player:
                 score.append (num[j] * (num[j]==max(num)))           
             point = sum(score)
         else :
-            pass
-            point = num[1] + 12
+            point = num[1] + 12        
         return point   
+           
+        #return self.__play()   
         
-    @property
-    def name(self) -> str :
-        return self.__name
-        
-
-    @property
-    def value(self)->int:
-        
-        return self.__play       
-        
-        #呼叫self.play()            
-
     def __repr__(self) ->str:
         descript = ""
         descript +=f"{self.name}\n"
@@ -58,18 +51,15 @@ class Player:
         descript +=f"骰子4={self.__dice4}\n"
         descript +=f"得分{self.value}分\n" 
         return  descript
-                    
-
+    
 if __name__ == "__main__":
     print("===========擲骰子遊戲開始========")
     p1 = Player("Robert")    
-    p1.value()
+    #print(p1.value)
     p2 = Player("John")
-    p2.value()
+    #print(p2.value)
     print(p1)
     print(p2)
     print("遊戲结束")
 
-        
-    
     

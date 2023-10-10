@@ -58,22 +58,18 @@ if __name__ == "__main__":
         p[i-1] = Player(f"玩家{i}")
         score.append(p[i-1].value)
         print(p[i-1])
-    
+        
     
     if c > 1:
         i = 0
         win = []
         s =max( [p[i].point for i in range(c)] )
         
-        i =0
         for i in range(c):
             if s==p[i].point :
                 win.append(p[i].name)      
-        
         print(f'贏家是:{win}')
 
-        
-       
         print("遊戲结束")
 
     

@@ -22,7 +22,7 @@ def __download()->list[list] | None:
             next(csv_reader)         #不列出一行
             return list(csv_reader)
         
-def cities_info()->list[list]:
+def cities_info()->list[list]:       #以'_'命名法
     if len(__cities) == 0:
 
         try :
@@ -36,3 +36,19 @@ def cities_info()->list[list]:
                     #print(row)
     return __cities
     
+
+def cityNames()->list[str] :          #駝峰式命名法
+    cities = cities_info()
+    names = []
+    for  row in cities:
+        cityName = row[1]
+        names.append(cityName)
+    return names
+
+
+def info(name:str)->list[str]:            #((name:str)引數一定要有值,後面不用加None
+    cities = cities_info()    
+    for city in cities:
+        if city[1] == name:        
+            return city
+    return []

@@ -47,7 +47,11 @@ class Player:
         descript +=f"得分{self.point}分\n" 
         return  descript
     
-if __name__ == "__main__":
+   
+
+
+if __name__ =="__main__":
+    
     print("===========擲骰子遊戲開始========")
     c = pyip.inputNum("請問幾位玩家?(最多5位,至少1位)",max=5,min=1)
     p=[]
@@ -64,12 +68,16 @@ if __name__ == "__main__":
         i = 0
         win = []
         s =max( [p[i].point for i in range(c)] )
-        
+   
         for i in range(c):
             if s==p[i].point :
                 win.append(p[i].name)      
         print(f'贏家是:{win}')
 
-        print("遊戲结束")
+    print("遊戲结束")
+
+
+
+   
 
     

@@ -11,7 +11,7 @@ import csv
 class Window(tk.Tk):
     def __init__(self,**kwargs):
         super().__init__(**kwargs)
-        self.geometry("300x250")
+        self.geometry("1200x500")
         self.title("Images")  
         
 class Getprice(Dialog):
@@ -40,25 +40,20 @@ class Getprice(Dialog):
         tk.Label(master,textvariable=self.VolumeVar).grid(column=1,row=6,sticky='W')
         #price = Getprice(self)
         
+        def user_selected(self,event):
+            selectedIndex = self.listbox.curselection()[0]
+            Date = self.listbox.get(selectedIndex)
+            #print(dataSource.info(cityName))
+            datalist = "台積電.csv".info(Date)
+            self.DateVar.set(datalist[0])
+            self.OpenVar.set(datalist[1])
+            self.HightVar.set(datalist[2])
+            self.LowVar.set(datalist[3])
+            self.CloseVar.set(datalist[4])
+            self.Adj_CloseVar.set(datalist[5])
+            self.ValueVar.set(datalist[6])
 
-
-        self.oldpw = tk.Label(master, width=16,text="DateVar")
-        self.newpw1 = tk.Label(master, width=16,text="OpenVar")
-        self.newpw2 = tk.Label(master, width=16,text="HighVar")
-        self.newpw3 = tk.Label(master, width=16,text="LowVar")
-        self.newpw4 = tk.Label(master, width=16,text="CloseVar")
-        self.newpw5 = tk.Label(master, width=16,text="Adj_CloseVar")
-        self.newpw6 = tk.Label(master, width=16,text="VolumeVar")
-
-        self.oldpw.grid(row=0, column=1, sticky=tk.W)
-        self.newpw1.grid(row=1, column=1, sticky=tk.W)
-        self.newpw2.grid(row=2, column=1, sticky=tk.W)
-        self.newpw3.grid(row=3, column=1, sticky=tk.W)
-        self.newpw4.grid(row=4, column=1, sticky=tk.W)
-        self.newpw5.grid(row=5, column=1, sticky=tk.W)
-        self.newpw6.grid(row=6, column=1, sticky=tk.W)
-        return self.oldpw
-
+        
         #def buttonbox(self):
            # '''add standard button box.
 
@@ -104,12 +99,9 @@ class MyFrame(ttk.LabelFrame):
                 low = row['Low']
                 close = row['Close']
                 adj_close = row['Adj Close']
-                value = row['Volume']
-
-        
-        
-        self.tree.insert('',tk.END,value=(date,open_v,high,low,close,adj_close,value))
-        self.tree.pack()    
+                value = row['Volume']       
+                self.tree.insert('',tk.END,value=(date,open_v,high,low,close,adj_close,value))
+            self.tree.pack()    
 
         self.tree.bind('<<TreeviewSelect>>',self.item_selected)  
 

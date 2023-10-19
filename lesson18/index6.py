@@ -39,14 +39,14 @@ class GetPassword(Dialog):
             override if you do not want the standard buttons
             '''
 
-        box = tk.Frame(self)
-        w = tk.Button(box, text="確認", width=10, command=self.ok, default=tk.ACTIVE)
-        w.pack(side=tk.LEFT, padx=5, pady=5)
+        #box = tk.Frame(self)
+        #w = tk.Button(box, text="確認", width=10, command=self.ok, default=tk.ACTIVE)
+        #w.pack(side=tk.LEFT, padx=5, pady=5)
         #w = tk.Button(box, text="取消", width=10, command=self.cancel)
         #w.pack(side=tk.LEFT, padx=5, pady=5)
-        self.bind("<Return>", self.ok)
+        #self.bind("<Return>", self.ok)
         #self.bind("<Escape>", self.cancel)
-        box.pack()
+        #box.pack()
         
        
 

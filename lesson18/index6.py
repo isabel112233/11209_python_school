@@ -33,20 +33,16 @@ class GetPassword(Dialog):
         tk.Label(master, text=self.value[5]).grid(row=5, column=1, sticky='E')       
         tk.Label(master, text=self.value[6]).grid(row=6, column=1, sticky='E')
         
-        def buttonbox(self):
-            '''add standard button box.
-#
-            override if you do not want the standard buttons
-            '''
-
-        #box = tk.Frame(self)
-        #w = tk.Button(box, text="確認", width=10, command=self.ok, default=tk.ACTIVE)
-        #w.pack(side=tk.LEFT, padx=5, pady=5)
+    def buttonbox(self):
+          
+        box = tk.Frame(self)
+        w = tk.Button(box, text="確認", width=10, command=self.ok, default=tk.ACTIVE)
+        w.pack(side=tk.LEFT, padx=5, pady=5)
         #w = tk.Button(box, text="取消", width=10, command=self.cancel)
         #w.pack(side=tk.LEFT, padx=5, pady=5)
-        #self.bind("<Return>", self.ok)
+        self.bind("<Return>", self.ok)
         #self.bind("<Escape>", self.cancel)
-        #box.pack()
+        box.pack()
         
        
 
@@ -55,9 +51,8 @@ class MyFrame(ttk.LabelFrame):
         super().__init__(master,text=title,**kwargs)        
         self.pack(expand=1,fill="both",padx=10,pady=10)
 
-        scrollbar = ttk.Scrollbar(self)
-        scrollbar.pack(side='right', fill='y')       
-          
+        
+        
 
         self.tree = ttk.Treeview(self,columns=['#1','#2','#3','#4','#5','#6','#7'],show='headings')    
         self.tree.heading('#1',text='日期') 
@@ -66,8 +61,13 @@ class MyFrame(ttk.LabelFrame):
         self.tree.heading('#4',text='最低價') 
         self.tree.heading('#5',text='收盤價')
         self.tree.heading('#6',text='調整收盤價')
-        self.tree.heading('#7',text='成交量')   
-        
+        self.tree.heading('#7',text='成交量')         
+
+
+        self.scrollbar = ttk.Scrollbar(self,orient="vertical",command=self.tree.yview)        
+        self.scrollbar.pack(side='right', fill='y')  
+        self.tree.config(yscrollcommand=self.scrollbar.set)
+         
         
         with open('台積電.csv', newline='') as csvfile:
             price_reader = csv.DictReader(csvfile)

@@ -5,13 +5,15 @@ from tkinter.simpledialog import Dialog
 import yfinance as yf
 import csv
 
+
+
 class Window(tk.Tk):
     def __init__(self,**kwargs):
         super().__init__(**kwargs) 
         self.geometry("1500x250")       
         self.title("股價查詢")  
         
-class GetPassword(Dialog):
+class GetPrice(Dialog):
     def __init__(self, master, values):
         self.value = values
         super().__init__(master)
@@ -36,12 +38,13 @@ class GetPassword(Dialog):
     def buttonbox(self):
           
         box = tk.Frame(self)
+        
         w = tk.Button(box, text="確認", width=10, command=self.ok, default=tk.ACTIVE)
         w.pack(side=tk.LEFT, padx=5, pady=5)
         #w = tk.Button(box, text="取消", width=10, command=self.cancel)
         #w.pack(side=tk.LEFT, padx=5, pady=5)
         self.bind("<Return>", self.ok)
-        #self.bind("<Escape>", self.cancel)
+        #self.bind("<Escape>", self.cancel)           
         box.pack()
         
        
@@ -49,9 +52,7 @@ class GetPassword(Dialog):
 class MyFrame(ttk.LabelFrame):
     def __init__(self,master,title,**kwargs):               
         super().__init__(master,text=title,**kwargs)        
-        self.pack(expand=1,fill="both",padx=10,pady=10)
-
-        
+        self.pack(expand=1,fill="both",padx=10,pady=10)        
         
 
         self.tree = ttk.Treeview(self,columns=['#1','#2','#3','#4','#5','#6','#7'],show='headings')    
@@ -68,7 +69,8 @@ class MyFrame(ttk.LabelFrame):
         self.scrollbar.pack(side='right', fill='y')  
         self.tree.config(yscrollcommand=self.scrollbar.set)
          
-        
+        data = yf.download("2330.TW", start='2023-01-01')
+        data.to_csv('台積電.csv')
         with open('台積電.csv', newline='') as csvfile:
             price_reader = csv.DictReader(csvfile)
             for row in price_reader:
@@ -88,7 +90,7 @@ class MyFrame(ttk.LabelFrame):
         item_id = self.tree.selection()[0]
         item_dict = self.tree.item(item_id)
         value =(item_dict['values'])
-        get_price = GetPassword(self,value)        
+        get_price = GetPrice(self,value)        
        
 
     def choised(self):

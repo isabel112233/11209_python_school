@@ -5,6 +5,8 @@
 - 數學計算
 
 ## 作業
+[2023-10-18作業](https://github.com/isabel112233/11209_python_school/blob/main/lesson19/lesson20_1.ipynb)
+
 [2023-10-16作業](https://github.com/isabel112233/11209_python_school/blob/main/lesson18/index6.py)
 
 [2023_10_05作業](https://github.com/isabel112233/11209_python_school/blob/main/2023_10_05%E4%BD%9C%E6%A5%AD.ipynb)

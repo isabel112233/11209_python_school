@@ -37,8 +37,7 @@ class GetPrice(Dialog):
         
     def buttonbox(self):
           
-        box = tk.Frame(self)
-        
+        box = tk.Frame(self)        
         w = tk.Button(box, text="確認", width=10, command=self.ok, default=tk.ACTIVE)
         w.pack(side=tk.LEFT, padx=5, pady=5)
         #w = tk.Button(box, text="取消", width=10, command=self.cancel)

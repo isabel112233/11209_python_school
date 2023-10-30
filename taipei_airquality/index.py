@@ -31,7 +31,7 @@ def main():
 
 
     window = Window()
-    window.title('台北市qirquality')
+    window.title('台北市空氣品質')
     window.geometry('300x300')                  
     window.resizable(width=False,height=False)  
     update_data()

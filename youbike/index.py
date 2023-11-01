@@ -21,13 +21,13 @@ class Window(tk.Tk):   #繼承TK的功能,1.先自定義如下第1列,呼叫繼�
         ##=========建立介面=============
         #print(datasource.lastest_datetime_data())
 
-        topFrame = tk.Frame(self,relief=tk.GROOVE,borderwidth=300,height=200)
-        tk.Label(topFrame,text='台北市youbike及時資料',font=("arial",20),bg="#333333",fg="ffffff",padx=10,pady=10).pack(padx=20,pady=20)
+        topFrame = tk.Frame(self,relief=tk.GROOVE,borderwidth=1)
+        tk.Label(topFrame,text='台北市youbike及時資料',font=("arial",20),bg="#333333",fg="#ffffff",padx=10,pady=10).pack(padx=20,pady=20)
         topFrame.pack(pady=30)
 
 
         bottomFrame = tk.Frame(self)
-        bottomFrame.pack()
+        bottomFrame.pack(pady=30)
 
 
 
@@ -66,7 +66,7 @@ def main():
     window = Window()
     window.title('台北市youbike2.0')
     #window.geometry('600x300')                  #設定大小
-    #window.resizable(width=False,height=False)  #改變最大化按鈕固定視無法調整
+    window.resizable(width=False,height=False)  #改變最大化按鈕固定視無法調整
     update_data(window)
     #window.protocol("WM_DELETE_WINDOW",on_closing)   #註冊on_closing,視窗關閉時執行def on_cloding
     window.mainloop()

@@ -40,12 +40,9 @@ def __create_table(conn:sqlite3.Connection):
     cursor.close
 
 def __insert_data(conn:sqlite3.Connection,values:list[any])->None:
-
-    cursor = conn.cursor()
-    
+    cursor = conn.cursor()    
     sql=   '''
     REPLACE INTO 台北市youbike(站點名稱,行政區,更新時間,地址,總車輛數,可借,可還)VALUES(?,?,?,?,?,?,?)
-
         '''
     
     cursor.execute(sql,values)
@@ -65,7 +62,7 @@ def updata_sqlite_data()->None:
     conn.close()
 
 
-def lastest_datetime_data():
+def lastest_datetime_data()->list[tuple]:
     conn = sqlite3.connect("youbike.db")
     cursor = conn.cursor()
     sql='''
@@ -79,5 +76,24 @@ def lastest_datetime_data():
     
     return rows
 
+def search_sitename(word:str)->list[tuple]:
+    conn = sqlite3.connect("youbike.db")
+    cursor = conn.cursor()
+    sql = '''
+        SELECT 站點名稱,max(更新時間) AS 更新時間,行政區,地址,總車輛數,可借,可還
+        from 台北市youbike
+        GROUP BY 站點名稱
+        HAVING 站點名稱 LIKE ?
+        '''
+    
+    cursor.execute(sql,[f'%{word}%'])
+    rows= cursor.fetchall()
+    cursor.close()
+    conn.close
+    return rows
 
 
+
+
+
+    

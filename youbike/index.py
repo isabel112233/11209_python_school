@@ -23,15 +23,24 @@ class Window(tk.Tk):
         topFrame.pack(pady=30)
 
         bottomFrame = tk.Frame(self)
+
         #---------------建立treeView---------------
         self.youbikeTreeView = YoubikeTreeView(bottomFrame,show="headings",columns=('sna','mday','sarea','ar','tot','sbi','bemp'))
-        self.youbikeTreeView.pack()
-        bottomFrame.pack(pady=30)
 
+        #=======設定捲軸===============
+        self.youbikeTreeView.pack(side='left')
+        vsb = ttk.Scrollbar(bottomFrame,orient="vertical",command=self.youbikeTreeView.yview)
+        vsb.pack(side='left',fill='y')        
+        self.youbikeTreeView.configure(yscrollcommand=vsb.set)        
+        bottomFrame.pack(pady=30)   
+
+        search_label = tk.Label(datasource.search_sitename, text='Name:')
+        search_label.grid(row=0, column=0)
+        entry = tk.Entry(datasource.search_sitename)
+        entry.grid(row=0, column=1)
+         
+        #datasource.search_sitename("三")
        
-
-        
-
 
 def main():    
     def update_data(w:Window)->None:

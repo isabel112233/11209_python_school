@@ -37,17 +37,20 @@ def __create_table(conn:sqlite3.Connection):
         '''
     )
     conn.commit()
+    cursor.close
 
 def __insert_data(conn:sqlite3.Connection,values:list[any])->None:
+
     cursor = conn.cursor()
     
     sql=   '''
     REPLACE INTO 台北市youbike(站點名稱,行政區,更新時間,地址,總車輛數,可借,可還)VALUES(?,?,?,?,?,?,?)
 
         '''
-       
+    
     cursor.execute(sql,values)
     conn.commit()
+    cursor.close()
 
 
 def updata_sqlite_data()->None:
@@ -60,6 +63,21 @@ def updata_sqlite_data()->None:
     for item in data:
         __insert_data(conn,[item['sna'],item['sarea'],item['mday'],item['ar'],item['tot'],item['sbi'],item['bemp']])
     conn.close()
+
+
+def lastest_datetime_data():
+    conn = sqlite3.connect("youbike.db")
+    cursor = conn.cursor()
+    sql='''
+    SELECT 站點名稱,max(更新時間) AS 更新時間,行政區,地址,總車輛數,可借,可還
+    from 台北市youbike
+    GROUP BY 站點名稱
+    '''
+    cursor.execute(sql)
+    rows= cursor.fetchall()
+    cursor.close()
+    
+    return rows
 
 
 

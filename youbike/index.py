@@ -22,24 +22,36 @@ class Window(tk.Tk):
         tk.Label(topFrame,text="台北市youbike及時資料",font=("arial", 20), bg="#333333", fg='#ffffff',padx=10,pady=10).pack(padx=20,pady=20)
         topFrame.pack(pady=30)
 
-        bottomFrame = tk.Frame(self)
+        #===========建立搜尋=================
+        middleFrame = ttk.LabelFrame(self,text='站點搜尋')
+        tk.Label(middleFrame,text="站點名稱:").pack(side='left')  #没有傳出東西
+        self.search_entry = tk.Entry(middleFrame) #建立entry實體,要先取得實體才可pack
+        self.search_entry.pack(side='left') #得到entry 實體所以直接pack      
+        middleFrame.pack(expand=1,fill='both')          #expend後面參數為1:True 或2:False      
+        
+        #---------------------------------------
 
-        #---------------建立treeView---------------
-        self.youbikeTreeView = YoubikeTreeView(bottomFrame,show="headings",columns=('sna','mday','sarea','ar','tot','sbi','bemp'))
+         #==============建立treeView=============
+        bottomFrame = tk.Frame(self)
+       
+        self.youbikeTreeView = YoubikeTreeView(bottomFrame,show="headings",
+                        columns=('sna','mday','sarea','ar','tot','sbi','bemp'),
+                       height=20)   #height 設定為20行
+
+        
+        
 
         #=======設定捲軸===============
         self.youbikeTreeView.pack(side='left')
         vsb = ttk.Scrollbar(bottomFrame,orient="vertical",command=self.youbikeTreeView.yview)
         vsb.pack(side='left',fill='y')        
         self.youbikeTreeView.configure(yscrollcommand=vsb.set)        
-        bottomFrame.pack(pady=30)   
+        bottomFrame.pack(pady=30,padx=20)  
 
-        search_label = tk.Label(datasource.search_sitename, text='Name:')
-        search_label.grid(row=0, column=0)
-        entry = tk.Entry(datasource.search_sitename)
-        entry.grid(row=0, column=1)
+        
+        
          
-        #datasource.search_sitename("三")
+        datasource.search_sitename("entry.get()")
        
 
 def main():    

@@ -5,7 +5,8 @@ from tkinter import messagebox
 from threading import Timer
 import datasource
 
-class Window(tk.Tk):                      
+class Window(tk.Tk):  
+    #print('1',end=" ")                    
     def __init__(self,**kwargs):
         super().__init__(**kwargs)
         #===========更新資料庫資料================#
@@ -56,6 +57,7 @@ class Window(tk.Tk):
 
 
     def OnEntryClick(self,event):
+        #print('2',end=" ")
         searchEntry = event.widget
         input_word = searchEntry.get()
         if input_word == "":
@@ -66,7 +68,8 @@ class Window(tk.Tk):
             self.youbikeTreeView.update_content(search_data)
        
         #===============主執行程式=================
-def main():    
+def main():  
+    #print("3",end=" ")  
     def update_data(w:Window)->None:                             
         datasource.updata_sqlite_data()   
         #===========更新TreeView資料                  

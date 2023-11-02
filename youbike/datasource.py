@@ -4,6 +4,7 @@ import sqlite3
 #===============下載資料==================
 
 def __download_youbike_data()->list[dict]:
+    #print("4",end=" ")
     '''
     下載youbike資料2.0
     https://tcgbusfs.blob.core.windows.net/dotapp/youbike/v2/youbike_immediate.json
@@ -21,7 +22,8 @@ def __download_youbike_data()->list[dict]:
 #--------------------------------------------------
 
 #===============建立資料庫欄位==================
-def __create_table(conn:sqlite3.Connection):    
+def __create_table(conn:sqlite3.Connection):  
+    #print("5",end=" ")  
     cursor = conn.cursor()
     cursor.execute(
         '''
@@ -48,6 +50,7 @@ def __create_table(conn:sqlite3.Connection):
 #===============建立讀取資料欄位==================
 
 def __insert_data(conn:sqlite3.Connection,values:list[any])->None:
+    #print("6",end=" ")
     cursor = conn.cursor()    
     sql=   '''
     REPLACE INTO 台北市youbike(站點名稱,行政區,更新時間,地址,總車輛數,可借,可還)VALUES(?,?,?,?,?,?,?)
@@ -62,6 +65,7 @@ def __insert_data(conn:sqlite3.Connection,values:list[any])->None:
 #===============下載並更新資料==================
 
 def updata_sqlite_data()->None:
+    #print("7",end=" ")
     '''
     下載,並更新資料庫
     '''
@@ -77,6 +81,7 @@ def updata_sqlite_data()->None:
 
 #===============讀取資料庫中最新資料==================
 def lastest_datetime_data()->list[tuple]:
+    #print("8",end=" ")
     conn = sqlite3.connect("youbike.db")
     cursor = conn.cursor()
     sql='''
@@ -95,6 +100,7 @@ def lastest_datetime_data()->list[tuple]:
 #===============搜尋資料庫中資料==================
 
 def search_sitename(word:str)->list[tuple]:
+    #print("9",end=" ")
     conn = sqlite3.connect("youbike.db")
     cursor = conn.cursor()
     sql = '''

@@ -1,7 +1,9 @@
 from tkinter import ttk
+import tkinter as tk
 from tkinter.simpledialog import Dialog
 
 class YoubikeTreeView(ttk.Treeview):
+    #print("10",end="")
     def __init__(self,parent,**kwargs):
         super().__init__(parent,**kwargs)
         self.parent = parent
@@ -30,6 +32,7 @@ class YoubikeTreeView(ttk.Treeview):
 
 
     def update_content(self,site_datas):
+        
         '''
         更新內容
         '''
@@ -42,13 +45,74 @@ class YoubikeTreeView(ttk.Treeview):
 
 
     def selectedItem(self,event):
+        
         selectedItem= self.focus()
         print(selectedItem)
         data_dict = (self.item(selectedItem))
         data_list = data_dict['values']
+        print(data_list)
         title = data_list[0]
-        detail = ShowDetail(self.parent,title=title)
+        detail = ShowDetail(self.parent,data=data_list,title=title)   #增加data資料傳值至dialog
 
 class ShowDetail(Dialog):
-        pass
+    def __init__(self,parent,data,**kwargs):     #parent=self.parent是Dialog的資料,接收增加之data 資料
+        self.sna = data[0]           #設self.data=data 使其可使用於其他funtion,不限於--__init__,先於執行super()__init__,否則會讀不到資料
+        self.mday = data[1]
+        self.sarea = data[2]
+        self.ar = data[3]
+        self.tot = data[4]
+        self.sbi = data[5]
+        self.bemp = data[6]
+        super().__init__(parent,**kwargs)    
+        #print(data)               #只能用於__init__
+        
+    def body(self, master):    #查看dialog定義屬body部份為overridden,自已設定則不會執行父類別之資料
+        '''create dialog body.
+
+        return widget that should have initial focus.
+        This method should be overridden, and is called
+        by the __init__ method.
+        '''
+        #super().body(master)     #執行父類別的body,因為父類別没資料所以不用執行可省略
+        mainFrame = tk.Frame(master)
+        mainFrame.pack(padx=100,pady=100)
+        
+        tk.Label(mainFrame,text="站點名稱").grid(column=0,row=0)
+        tk.Label(mainFrame,text="更新時間").grid(column=0,row=1)
+        tk.Label(mainFrame,text="行政區").grid(column=0,row=2)
+        tk.Label(mainFrame,text="地址").grid(column=0,row=3)
+        tk.Label(mainFrame,text="總車輛數").grid(column=0,row=4)
+        tk.Label(mainFrame,text="可借").grid(column=0,row=5)
+        tk.Label(mainFrame,text="可還").grid(column=0,row=6)
+
+        snaVar = tk.StringVar()
+        snaVar.set(self.sna)
+        tk.Entry(mainFrame,textvariable=snaVar,state='disabled').grid(column=1,row=0)
+
+        mdayVar = tk.StringVar()
+        mdayVar.set(self.mday)
+        tk.Entry(mainFrame,textvariable=mdayVar,state='disabled').grid(column=1,row=1)
+
+        sareaVar = tk.StringVar()
+        sareaVar.set(self.sarea)
+        tk.Entry(mainFrame,textvariable=sareaVar,state='disabled').grid(column=1,row=2)
+
+
+        arVar = tk.StringVar()
+        arVar.set(self.ar)
+        tk.Entry(mainFrame,textvariable=arVar,state='disabled').grid(column=1,row=3)
+
+        totVar = tk.StringVar()
+        totVar.set(self.tot)
+        tk.Entry(mainFrame,textvariable=totVar,state='disabled').grid(column=1,row=4)
+
+        sbiVar = tk.StringVar()
+        sbiVar.set(self.sbi)
+        tk.Entry(mainFrame,textvariable=sbiVar,state='disabled').grid(column=1,row=5)
+
+        bempVar = tk.StringVar()
+        bempVar.set(self.bemp)
+        tk.Entry(mainFrame,textvariable=bempVar,state='disabled').grid(column=1,row=6)
+    
+   
 

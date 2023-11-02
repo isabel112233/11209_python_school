@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
-from youbikeTreeView import YoubikeTreeView
+from youbike.youbikeTreeView import YoubikeTreeView
 from tkinter import messagebox
 import datasource          #import自訂的modul datadource
 from threading import Timer

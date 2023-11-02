@@ -1,6 +1,8 @@
 import requests
 import sqlite3
 
+#===============下載資料==================
+
 def __download_youbike_data()->list[dict]:
     '''
     下載youbike資料2.0
@@ -16,8 +18,9 @@ def __download_youbike_data()->list[dict]:
     #    raise Exception("下載失敗")
     #else:
     #    raise Exception("下載失敗")
+#--------------------------------------------------
 
-
+#===============建立資料庫欄位==================
 def __create_table(conn:sqlite3.Connection):    
     cursor = conn.cursor()
     cursor.execute(
@@ -38,6 +41,11 @@ def __create_table(conn:sqlite3.Connection):
     )
     conn.commit()
     cursor.close
+    print("create_table成功")
+#--------------------------------------------------
+
+
+#===============建立讀取資料欄位==================
 
 def __insert_data(conn:sqlite3.Connection,values:list[any])->None:
     cursor = conn.cursor()    
@@ -49,6 +57,9 @@ def __insert_data(conn:sqlite3.Connection,values:list[any])->None:
     conn.commit()
     cursor.close()
 
+#--------------------------------------------------
+
+#===============下載並更新資料==================
 
 def updata_sqlite_data()->None:
     '''
@@ -61,7 +72,10 @@ def updata_sqlite_data()->None:
         __insert_data(conn,[item['sna'],item['sarea'],item['mday'],item['ar'],item['tot'],item['sbi'],item['bemp']])
     conn.close()
 
+#--------------------------------------------------
 
+
+#===============讀取資料庫中最新資料==================
 def lastest_datetime_data()->list[tuple]:
     conn = sqlite3.connect("youbike.db")
     cursor = conn.cursor()
@@ -75,6 +89,10 @@ def lastest_datetime_data()->list[tuple]:
     cursor.close()
     
     return rows
+#--------------------------------------------------
+
+
+#===============搜尋資料庫中資料==================
 
 def search_sitename(word:str)->list[tuple]:
     conn = sqlite3.connect("youbike.db")
@@ -92,7 +110,7 @@ def search_sitename(word:str)->list[tuple]:
     conn.close
     return rows
 
-
+#--------------------------------------------------
 
 
 

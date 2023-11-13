@@ -1,17 +1,15 @@
 import tkinter as tk
-from tkinter import ttk
 from tkinter import messagebox
 import datasource          
 from threading import Timer
 import datasource
-import password as pw
 import psycopg2
 
 class Window(tk.Tk):      
     def __init__(self,**kwargs):
         super().__init__(**kwargs)
         try:
-            datasource.updata_pm25_data()        
+            datasource.updata_pm25_data()
         except Exception:
             messagebox.showerror("錯誤",'網路不正常\n將關閉應用程式\n請稍後再試')       
             self.destroy() 
@@ -26,10 +24,9 @@ def main():
     
     def update_data()->None:
         datasource.updata_pm25_data()
-        global t                 
-        t = Timer(3600,update_data)  
+        t = Timer(5*60, update_data, args=(window,))
         t.start()
-
+        
 
 
     window = Window()
@@ -37,10 +34,8 @@ def main():
     window.geometry('300x300')                  
     window.resizable(width=False,height=False)  
     update_data()
-    window.protocol("WM_DELETE_WINDOW",on_closing)  
+    window.protocol("WM_DELETE_WINDOW", on_closing)
     window.mainloop()
-
-
 
 
 if __name__ =='__main__':

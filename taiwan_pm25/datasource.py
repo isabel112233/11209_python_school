@@ -28,14 +28,12 @@ def __create_table(conn):
         '''
     )
     conn.commit() 
-    conn.close()   
+    
     print("create_table成功")
 
 
-def __insert_data(conn, values: list[any]) -> None:
-    print("匯入")
-    cursor = conn.cursor()
-    print('連線')
+def __insert_data(conn, values: list[any]) -> None:    
+    cursor = conn.cursor()    
     sql= '''
         INSERT INTO taiwan_pm25(城市名稱,縣市名稱,pm25,時間)
         VALUES(%s,%s,%s,%s)
@@ -43,8 +41,8 @@ def __insert_data(conn, values: list[any]) -> None:
     '''
     cursor.execute(sql,values)
     conn.commit()
-    conn.close() 
-    print('成功')
+   
+    
     
 
 
@@ -60,9 +58,25 @@ def updata_pm25_data()->None:
                         port="5432")    
     __create_table(conn)
     for item in data['records']:
-        print(item)       
+              
         __insert_data(conn,values=[item['site'],
                             item['county'],                            
                             item['pm25'],                       
                             item['datacreationdate']])
-        conn.close()
+    conn.close()
+
+#===============讀取資料庫中最新資料==================
+def lastest_datetime_data()->list[tuple]:
+    cursor = conn.cursor()    
+    sql= '''
+        INSERT INTO taiwan_pm25(城市名稱,縣市名稱,pm25,時間)
+        VALUES(%s,%s,%s,%s)
+        ON CONFLICT (城市名稱,時間) DO NOTHING
+    '''
+    
+    cursor.execute(sql)
+    rows= cursor.fetchall()
+    cursor.close()
+    
+    return rows
+#--------------------------------------------------

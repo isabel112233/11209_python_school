@@ -16,16 +16,17 @@ class Window(tk.Tk):
     
 t = None  
 def main():
-    def on_closing():         
-        print('window關閉')
-        t.cancel()
-        window.destroy()      
+    #def on_closing():         
+    #    print('window關閉')
+    #    t.cancel()
+    #    window.destroy()      
 
     
-    def update_data()->None:
+    def update_data(w:Window)->None:
         datasource.updata_pm25_data()
-        t = Timer(5*60, update_data, args=(window,))
-        t.start()
+        window.after(60*60*1000,update_data,w)
+        #t = Timer(5*60, update_data, args=(window,))
+        #t.start()
         
 
 
@@ -33,8 +34,8 @@ def main():
     window.title('台灣PM2.5')
     window.geometry('300x300')                  
     window.resizable(width=False,height=False)  
-    update_data()
-    window.protocol("WM_DELETE_WINDOW", on_closing)
+    update_data(window)
+    #window.protocol("WM_DELETE_WINDOW", on_closing)
     window.mainloop()
 
 

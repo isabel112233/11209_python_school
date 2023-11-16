@@ -3,6 +3,7 @@ import password as pw
 import psycopg2
 
 #===============下載資料==================
+threadRun = True   #次執行緒是否執行
 
 def __download_youbike_data()->list[dict]:
     #print("4",end=" ")
@@ -64,7 +65,10 @@ def updata_render_data()->None:
                         port="5432")
     __create_table(conn)  
     for item in data:
-        __insert_data(conn,[item['sna'],item['sarea'],item['mday'],item['ar'],item['tot'],item['sbi'],item['bemp']])
+        if threadRun == True : #檢查次執行緒是否執行
+            __insert_data(conn,[item['sna'],item['sarea'],item['mday'],item['ar'],item['tot'],item['sbi'],item['bemp']])
+        else:
+            break   #次執行緒強制執行
     conn.close()
 
 

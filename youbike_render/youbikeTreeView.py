@@ -38,19 +38,17 @@ class YoubikeTreeView(ttk.Treeview):
         '''
         #清除所有內容
         for i in self.get_children():
-            self.delete(i)
-        
+            self.delete(i)  
+                  
         for index,site in enumerate(site_datas):
             self.insert('','end',text=f"abc{index}",values=site)
 
 
-    def selectedItem(self,event):
-        
+    def selectedItem(self,event):        
         selectedItem= self.focus()
         print(selectedItem)
         data_dict = (self.item(selectedItem))
-        data_list = data_dict['values']
-        print(data_list)
+        data_list = data_dict['values']        
         title = data_list[0]
         detail = ShowDetail(self.parent,data=data_list,title=title)   #增加data資料傳值至dialog
 
@@ -75,8 +73,7 @@ class ShowDetail(Dialog):
         '''
         #super().body(master)     #執行父類別的body,因為父類別没資料所以不用執行可省略
         mainFrame = tk.Frame(master)
-        mainFrame.pack(padx=100,pady=100)
-        
+        mainFrame.pack(padx=100,pady=100)        
         tk.Label(mainFrame,text="站點名稱").grid(column=0,row=0)
         tk.Label(mainFrame,text="更新時間").grid(column=0,row=1)
         tk.Label(mainFrame,text="行政區").grid(column=0,row=2)

@@ -63,11 +63,15 @@ def main():
         
         #-----------更新treeView資料---------------
         lastest_data = datasource.lastest_datetime_data()
-        w.youbikeTreeView.update_content(lastest_data)
+        try:
+            w.youbikeTreeView.update_content(lastest_data)
         #w.after(5*60*1000,update_data,w)   #每隔5分鐘
-        t= Timer(5*60,update_data,args=(window,))
+        except RuntimeError :  #次執行中止會產生RuntimeError的錯誤
+            return
+        t= Timer(5*60*1000,update_data,args=(window,))
         t.start()
 
+    global t,window
     window = Window()
     window.title('台北市youbike2.0')
     window.geometry('600x300')
@@ -79,6 +83,13 @@ def main():
     t.start()
     window.mainloop()
 
+def on_cloding():
+    datasource.threadRun = False  #結束次執行緒執行
+    window.destroy()
+    t.cancel()
+
 
 if __name__ == "__main__":
+    t = None
+    window = None
     main()

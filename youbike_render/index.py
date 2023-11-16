@@ -38,18 +38,18 @@ class Window(tk.Tk):
         bottomFrame.pack(pady=(0,30),padx=20)
         #-------------------------------------------
 
-        def OnEntryClick(self,event):
+    def OnEntryClick(self,event):
         
-            searchEntry = event.widget
-            input_word = searchEntry.get()
-            if input_word == "":
-                lastest_data = datasource.lastest_datetime_data()
-                self.youbikeTreeView.update_content(lastest_data)
-            else:
-                search_data = datasource.search_sitename(word = input_word)
-                self.youbikeTreeView.update_content(search_data)
+        searchEntry = event.widget
+        input_word = searchEntry.get()
+        if input_word == "":
+            lastest_data = datasource.lastest_datetime_data()
+            self.youbikeTreeView.update_content(lastest_data)
+        else:
+            search_data = datasource.search_sitename(word = input_word)
+            self.youbikeTreeView.update_content(search_data)
 
-    
+
 
 def main():
     def update_data(w:Window)->None:

@@ -1,9 +1,9 @@
-body {
+#main {
     background-color: aliceblue;
 }
 
 @media (min-width: 576px) {
-    body {
+    #main {
         background-color: aqua;
 
     }
@@ -13,7 +13,7 @@ body {
 
 
 @media (min-width: 768px) {
-    body {
+    #main {
         background-color: bisque;
     }
 }
@@ -22,7 +22,7 @@ body {
 
 
 @media (min-width: 992px) {
-    body {
+    #main {
 
         background-color: brown;
     }
@@ -32,16 +32,16 @@ body {
 
 
 @media (min-width: 1200px) {
-    body {
+    #main {
         background-color: burlywood;
     }
 
+}
 
 
+@media (min-width: 1400px) {
+    #main {
+        background-color: cadetblue;
 
-    @media (min-width: 1400px) {
-        body {
-            background-color: cadetblue;
-
-        }
     }
+}

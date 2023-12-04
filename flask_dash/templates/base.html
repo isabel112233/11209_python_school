@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% bolck head%}
+    <title>{% bolck title%}{% endtitle %}</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='/css/bootstrape.min.css')}}">
+    {% endblock%}
+</head>
+<body>
+    <div  class="container-lg">{% bolck content%}{% endblock %}</div>
+    
+
+    <script src="{{url_for('static',filename='/js/bootstrape.min.css')}}"></script>
+    <div id="footer"> 
+        {% block footer %}
+        &copy; Copyright 2008 by <a href="https://flask-dash-web-banv.onrender.com">xxxxxxxx</a>
+        {% endblock%}
+
+
+    </div>
+    
+</body>
+</html>

@@ -1,16 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flask_Dash</title>
-    <link rel="stylesheet" href="{{url_for('static',filename='/css/bootstrape.min.css')}}">
-</head>
-<body>
-    <h1 >Flask_Dash
-        <small class="text-secondary">With fade secondary test</small>
-    </h1>
-    <script src="{{url_for('static',filename='/js/bootstrape.min.css')}}"></script>
-    
-</body>
-</html>
+{% extends "base.html" %}
+{% block title %}
+    flask_dash
+{% endblock%}
+ 
+{% block head %}
+    {{ super() }}
+    <style>
+            
+        @media (min-width: 576px) { ... }
+
+
+        @media (min-width: 768px) { ... }
+
+
+        @media (min-width: 992px) { ... }
+
+
+        @media (min-width: 1200px) { ... }
+
+
+        @media (min-width: 1400px) { ... }
+        
+    </style>
+{% endblock %}
+
+{% block content %}
+
+{% endblock %}
+
+{% block footer %}
+    &copy; Copyright 2023 by <a href="https://flask-dash-web-banv.onrender.com">XXXXXXXX</a>.
+    {% endblock %}
+
+{% endblock %}

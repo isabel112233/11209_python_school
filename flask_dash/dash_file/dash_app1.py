@@ -2,6 +2,7 @@ from flask import Flask,render_template,url_for
 from dash import Dash, html, dcc, callback, Output, Input
 import plotly.express as px
 import pandas as pd
+from dash_fie.dash_app2 import dash2
 #
 df = pd.read_csv('https://raw.githubusercontent.com/plotly/datasets/master/gapminder_unfiltered.csv')
 

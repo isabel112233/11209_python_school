@@ -3,6 +3,8 @@ import pandas as pd
 dash2 = Dash(requests_pathname_prefix="/dash/app2/")
 
 dash2.layout = html.Div([
-    html.H1(children='Dash Layout 開始了', style={'textAlign':'center'})
+    html.H1("Dash H1"),
+    html.P("這是段茖1"),
+    html.P("這是段茖2"),
 
 ])

@@ -7,7 +7,7 @@ from dash_file.dash_app1 import dash1
 app = Flask(__name__)
 application = DispatcherMiddleware(
     app,
-    {"/app1": dash1.server},
+    {"/dash/app1": dash1.server},
 )   #/app1為網頁上路徑可自設不用跟檔案總管相同
 
 @app.route("/")

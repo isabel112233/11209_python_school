@@ -4,6 +4,7 @@ import dash_bootstrap_components as dbc
 from . import datasource
 import pandas as pd
 
+
 dash2 = Dash(requests_pathname_prefix="/dash/app2/",external_stylesheets=[dbc.themes.BOOTSTRAP])
 dash2.title = "台北市youbike及時資料"
 current_data = datasource.lastest_datetime_data()

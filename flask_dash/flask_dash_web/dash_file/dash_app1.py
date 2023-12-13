@@ -1,10 +1,11 @@
-from flask import Flask,render_template,url_for
 from dash import Dash, html, dcc, callback, Output, Input
 import plotly.express as px
 import pandas as pd
-#
+
 df = pd.read_csv('https://raw.githubusercontent.com/plotly/datasets/master/gapminder_unfiltered.csv')
 
+#這是註解
+#
 dash1 = Dash(requests_pathname_prefix="/dash/app1/")
 
 dash1.layout = html.Div([
@@ -22,4 +23,4 @@ def update_graph(value):
     return px.line(dff, x='year', y='pop')
 
 if __name__ == '__main__':
-  dash1.run(debug=True)
+    dash1.run(debug=True)

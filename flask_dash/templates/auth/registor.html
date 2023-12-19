@@ -1,7 +1,7 @@
 {% extends "base_navigation.html" %}
 
 {% block title %}
-登入
+註冊
 {% endblock %}
 
 {% block head %}
@@ -30,38 +30,39 @@
 
 {% block content %}
 <div class="container-lg">
-    <h1>登入</h1>
+    <h1>註冊帳號</h1>
     <form method="POST">
         {{ form.csrf_token }}
         <table class="table">
 
             <tbody>
                 <tr>
-                    <th scope="row" class="col-2 text-end">{{ form.name.label }}</th>
+                    <th scope="row" class="col-2 text-end">{{ form.uName.label(class='form-label') }}</th>
                     <td>
-                        {{ form.name(size=20,class='form-control') }}
+                        {{ form.uName(size=20,class='form-control') }}
                     </td>
-
                 </tr>
+
                 <tr>
-                    <th scope="row" class="col-2 text-end">密碼</th>
+                    <th scope="row" class="col-2 text-end">{{ form.uGender.label(class='form-label') }}</th>
                     <td>
-                        <input type="text" id="password" name="password" required minlength="4" maxlength="8" size="10"
-                            class="form-control" />
+                        {{ form.uGender(class='form-select') }}
                     </td>
-
                 </tr>
+
                 <tr>
                     <th scope="row"></th>
-                    <td><input type="reset" id="resetBtn" value="重設" class="btn btn-secondary" /><input type="submit"
-                            value="確定" class="btn btn-primary" /></td>
-                            <a href="/auth/registor" style="margin-left:20px">註冊</a>
+                    <td>
+                        <input type="reset" id="resetBtn" value="重設" class="btn btn-secondary" />
+                        <input type="submit" value="確定" class="btn btn-primary" />
+
+                    </td>
 
                 </tr>
             </tbody>
         </table>
-    </form>
-    {{ super() }}
+
+        {{ super() }}
 </div>
 
 {% endblock %}

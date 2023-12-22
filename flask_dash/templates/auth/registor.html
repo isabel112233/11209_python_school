@@ -74,6 +74,17 @@
                     <th scope="row" class=" text-end">{{ form.uEmail.label(class='form-label') }}</th>
                     <td>
                         {{ form.uEmail(class='form-control') }}
+                        {% if form.uEmail.errors %}
+                        <ul class="errors">
+                            {% for error in form.uEmail.errors %}
+                            <li>
+                                <div class="alert alert-danger" role="alert">
+                                    {{ error }}
+                                </div>
+                            </li>
+
+                            {% endfor %}
+                            {% endif %}
                     </td>
                 </tr>
 
@@ -83,12 +94,14 @@
                         {{ form.isGetEmail(class='form-check-input') }}
                     </td>
                 </tr>
+
                 <tr>
                     <th scope="row" class=" text-end">{{ form.uBirthday.label(class='form-label') }}</th>
                     <td>
                         {{ form.uBirthday(class='form-control') }}
                     </td>
                 </tr>
+
                 <tr>
                     <th scope="row" class=" text-end">{{ form.uAboutMe.label(class='form-label') }}</th>
                     <td>
@@ -108,20 +121,21 @@
                                     {{ error }}
                                 </div>
                             </li>
-                
+
                             {% endfor %}
                         </ul>
                         {% endif %}
                     </td>
-                
+
                 </tr>
-                
+
                 <tr>
                     <th scope="row" class=" text-end">{{ form.uConfirmPass.label(class='form-label') }}</th>
                     <td>
                         {{ form.uConfirmPass(class='form-control') }}
                     </td>
                 </tr>
+
                 <tr>
                     <th scope="row"></th>
                     <td>
@@ -138,6 +152,7 @@
 </div>
 
 {% endblock %}
+
 
 
 {% block footer %}
